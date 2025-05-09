@@ -24,20 +24,32 @@ export const useRumorStore = defineStore('rumors', () => {
   });
 
   const categories = computed(() => {
-    // 提取所有分类名的公共前缀
+    // 提取所有分类名的公共后缀
     const names = reports.value.map(r => r.name);
-    let prefix = names[0] || '';
+    let suffix = names[0] || '';
     for (let i = 1; i < names.length; i++) {
       let j = 0;
-      while (j < prefix.length && j < names[i].length && prefix[j] === names[i][j]) j++;
-      prefix = prefix.slice(0, j);
+      while (
+        j < suffix.length &&
+        j < names[i].length &&
+        suffix[suffix.length - 1 - j] === names[i][names[i].length - 1 - j]
+      ) {
+        j++;
+      }
+      suffix = suffix.slice(suffix.length - j);
     }
-    // 去除公共前缀后返回精简标题
-    return reports.value.map((report, index) => ({
-      id: report.vid,
-      name: report.name.startsWith(prefix) ? report.name.slice(prefix.length) : report.name,
-      index
-    }));
+    // 去除公共后缀后返回精简标题
+    return reports.value.map((report, index) => {
+      let name = report.name;
+      if (suffix && name.endsWith(suffix)) {
+        name = name.slice(0, name.length - suffix.length);
+      }
+      return {
+        id: report.vid,
+        name,
+        index
+      };
+    });
   });
 
   // Functions

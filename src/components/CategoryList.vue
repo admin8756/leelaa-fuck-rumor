@@ -10,10 +10,20 @@
           selectedCategory === category.id 
             ? 'bg-blue-600 text-white' 
             : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600',
-          theme === 'elderly' ? 'text-lg sm:text-xl py-2 sm:py-3 px-4 sm:px-5' : ''
+          theme === 'elderly' ? 'text-lg sm:text-xl py-2 px-4 sm:py-5' : ''
         ]"
       >
-        {{ category.name }}
+        <template v-if="parseYearMonth(category.name)">
+          <span class="block text-xs text-gray-500 leading-none font-mono tracking-widest" style="letter-spacing:0.1em;">
+            {{ parseYearMonth(category.name).year }}
+          </span>
+          <span class="block text-lg font-bold text-blue-700 dark:text-blue-300 leading-none">
+            {{ parseYearMonth(category.name).month }} 
+          </span>
+        </template>
+        <template v-else>
+          {{ category.name }}月
+        </template>
       </button>
     </div>
   </div>
@@ -34,6 +44,17 @@ const theme = computed(() => themeStore.theme);
 const selectCategory = (categoryId: string) => {
   rumorStore.selectCategory(categoryId);
 };
+
+function parseYearMonth(name: string): { year: string, month: string } | null {
+  const match = name.match(/(20\\d{2})[年/-]?(0?[1-9]|1[0-2])月?/);
+  if (match) {
+    return {
+      year: match[1],
+      month: match[2].padStart(2, '0')
+    };
+  }
+  return null;
+}
 </script>
 
 <style scoped>
