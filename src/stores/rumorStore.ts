@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import axios from 'axios';
-import type { ApiResponse, ReportData, RumorItem, Category } from '../types';
+import type { ApiResponse, ReportData, RumorItem } from '../types';
 
 export const useRumorStore = defineStore('rumors', () => {
   const reports = ref<ReportData[]>([]);

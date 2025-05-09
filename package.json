@@ -1,5 +1,5 @@
 {
-  "name": "rumor-debunking-platform",
+  "name": "fuck-rumor",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,20 +9,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.10",
-    "axios": "^1.6.2",
-    "pinia": "^2.1.7",
-    "vue-router": "^4.2.5",
-    "dayjs": "^1.11.10",
-    "@vueuse/core": "^10.6.1"
+    "@vueuse/core": "^10.11.1",
+    "axios": "^1.9.0",
+    "dayjs": "^1.11.13",
+    "pinia": "^2.3.1",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.4",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.5",
-    "typescript": "^5.5.3",
-    "vite": "^5.4.8",
-    "vue-tsc": "^2.1.6"
+    "@vitejs/plugin-vue": "^5.2.3",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3",
+    "vite": "^5.4.19",
+    "vue-tsc": "^2.2.10"
   }
 }

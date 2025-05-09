@@ -109,7 +109,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onBeforeUnmount, onMounted } from 'vue';
+import { ref, computed, watch, onBeforeUnmount } from 'vue';
 import type { RumorItem } from '../types';
 import { useThemeStore } from '../stores/themeStore';
 import textToSpeech from '../services/TextToSpeech';
@@ -178,7 +178,7 @@ onBeforeUnmount(() => {
 });
 
 // 监听谣言变化，如果当前谣言正在朗读但内容发生变化，则停止朗读
-watch(() => props.rumor, (newVal, oldVal) => {
+watch(() => props.rumor, (oldVal) => {
   const oldRumourText = `${oldVal.title}。辟谣观点：${oldVal.content}`;
   if (textToSpeech.isReading.value && textToSpeech.currentText.value === oldRumourText) {
     textToSpeech.stopReading();
